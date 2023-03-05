@@ -1,0 +1,18 @@
+Info | sample-name | This is a test of Whatap alert message | 20230305181804
+Critical | hadaruns-test | hadaruns-test서버의 메모리 사용량이 68.0351%입니다. (30%이상) | 20230305182250
+Info | sample-name | This is a test of Whatap alert message | 20230305182623
+Critical | hadaruns-test | hadaruns-test서버의 메모리 사용량이 67.928%입니다. (30%이상) | 20230305182755
+Critical | hadaruns-test | hadaruns-test서버의 메모리 사용률이 68.0005%입니다. (30%이상 경고) | 20230305182910
+Critical | hadaruns-test | 서버의 메모리 사용률이 67.9749%입니다. (30%이상 경고) | 20230305183050
+Warning | MetricTest | 실행중인 Thread 수: 49(임계치:40이상) | 20230305183115
+Warning | hadaruns-test | 서버의 메모리 사용률이 68.0458%입니다. (30%이상 Warning) | 20230305183140
+Warning | hadaruns-test | 서버의 메모리 사용률이 68.0327%입니다. (35%이상 Warning) | 20230305183155
+Warning | hadaruns-test | 서버의 메모리 사용률이 68.0487%입니다. (50%이상 Warning) | 20230305183225
+Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상) | 20230305183410
+Warning | hadaruns-test | 서버의 메모리 사용률이 67.9935%입니다. (Warning:50%이상) | 20230305183525
+Warning | hadaruns-test | 서버의 메모리 사용률: 68.0101%(Warning:50%이상) | 20230305183820
+Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상) | 20230305183915
+Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상)@158.247.198.153 | 20230305184145
+Warning | hadaruns-test | 서버의 메모리 사용률: 68.0508%(Warning:50%이상) | 20230305184325
+Warning | MetricTest | 실행중인 Thread 수: 49 (Warning:40이상)@158.247.198.153 | 20230305184355
+Warning | hadaruns-test | 서버의 메모리 사용률: 68.0324% (Warning:50%이상) | 20230305184410
