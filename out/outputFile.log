@@ -16,3 +16,11 @@ Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상)@158.247.198
 Warning | hadaruns-test | 서버의 메모리 사용률: 68.0508%(Warning:50%이상) | 20230305184325
 Warning | MetricTest | 실행중인 Thread 수: 49 (Warning:40이상)@158.247.198.153 | 20230305184355
 Warning | hadaruns-test | 서버의 메모리 사용률: 68.0324% (Warning:50%이상) | 20230305184410
+Info | sample-name | This is a test of Whatap alert message | 20230305231017
+Info | sample-name | This is a test of Whatap alert message | 20230305231040
+Info | sample-name | This is a test of Whatap alert message | 20230305231059
+Warning | 158.247.198.153 | Thread Count: 49 (Threshold: 40) | 20230305231225
+Warning | 158.247.198.153 | Memory Used: 68.275% (Threshold: 50%) | 20230305231250
+Warning | 158.247.198.153 | Thread Count of MetricTest: 49 (Threshold: 40) | 20230305231400
+Warning | DBX-198-153-3306 | InnoDB Row Lock Current Waits: 0 (Threshold: 1) | 20230305231435
+Warning | DBX-198-153-3306 | InnoDB Row Lock Time: 0 (Threshold: 1) | 20230305231445

@@ -30,7 +30,9 @@ public class Receiver extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		Config config = Config.getConfig();
+		
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		try {
@@ -43,6 +45,18 @@ public class Receiver extends HttpServlet{
 		String requestBody = jb.toString();
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
+		
+		//oname을 host_ip로 치환
+		String message = dto.getMessage();
+		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
+		
+		if (idx > 0) {
+			String messageFix = message.substring(0, idx);
+			String hostip = message.substring(idx + 1);
+			
+			dto.setOname(hostip);
+			dto.setMessage(messageFix);
+		}
 		
 		FilePrinter printer = new FilePrinter();
 		printer.print(dto);
