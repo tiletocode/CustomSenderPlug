@@ -46,15 +46,27 @@ public class Receiver extends HttpServlet{
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 		
-		//oname을 host_ip로 치환
+		//null check
+		if (dto.getLevel() == null) {
+			dto.setLevel(config.getString("webhook.message.nullreplace", "empty_value"));
+		}
+		if (dto.getOname() == null) {
+			dto.setOname(config.getString("webhook.message.nullreplace", "empty_value"));
+		}
+		if (dto.getMessage() == null) {
+			dto.setMessage(config.getString("webhook.message.nullreplace", "empty_value"));
+		}
+			
+		//oname에 host_ip추가
 		String message = dto.getMessage();
+		String oname = dto.getOname();
 		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
 		
 		if (idx > 0) {
 			String messageFix = message.substring(0, idx);
 			String hostip = message.substring(idx + 1);
-			
-			dto.setOname(hostip);
+		
+			dto.setOname(oname + "(" + hostip + ")");
 			dto.setMessage(messageFix);
 		}
 		
