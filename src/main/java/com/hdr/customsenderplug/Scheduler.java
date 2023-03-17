@@ -19,10 +19,14 @@ public class Scheduler {
 		Config config = Config.getConfig();
 		try {
 			log.info("[File Rolling CronJob] is running");
-			String filePath = config.getString("webhook.file.path" + "webhook.file.extension", "out/outputFile.log");
-			File printFile = new File(filePath);
+			
+			String dir = config.getString("webhook.file.path", "out/outputFile");
+			String extension = config.getString("webhook.file.extension", ".log");
+			
+			String originPath = dir + extension;
+			File printFile = new File(originPath);
 			if(printFile.exists()) {
-				Files.write(Paths.get(filePath), new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
+				Files.write(Paths.get(originPath), new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
 			}
 			
 			long currentTimestamp = System.currentTimeMillis();
@@ -35,9 +39,9 @@ public class Scheduler {
 			
 			long targetTimestamp = currentTimestamp - (oneDay * targetSize);
 			
+			String dot = ".";
 			String suffix = StringUtils.formatDate(targetTimestamp, config.getString("webhook.file.rolling.suffix", "yyyyMMdd"));
-			String targetFilePath = config.getString("webhook.file.path" + "." + suffix + "webhook.file.extension",
-													 "out/outputFile" + "." + suffix + ".log");
+			String targetFilePath = dir + dot + suffix + extension;
 			File targetFile = new File(targetFilePath);
 			if(targetFile.exists()) {
 				targetFile.delete();

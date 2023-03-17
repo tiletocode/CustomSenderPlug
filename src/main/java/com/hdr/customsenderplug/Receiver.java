@@ -47,27 +47,32 @@ public class Receiver extends HttpServlet{
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 		
 		//null check
+		String nullReplace = config.getString("webhook.message.nullreplace", "empty_value");
 		if (dto.getLevel() == null) {
-			dto.setLevel(config.getString("webhook.message.nullreplace", "empty_value"));
+			dto.setLevel(nullReplace);
 		}
 		if (dto.getOname() == null) {
-			dto.setOname(config.getString("webhook.message.nullreplace", "empty_value"));
+			dto.setOname(nullReplace);
 		}
 		if (dto.getMessage() == null) {
-			dto.setMessage(config.getString("webhook.message.nullreplace", "empty_value"));
+			dto.setMessage(nullReplace);
 		}
 			
 		//oname에 host_ip추가
-		String message = dto.getMessage();
-		String oname = dto.getOname();
-		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
-		
-		if (idx > 0) {
-			String messageFix = message.substring(0, idx);
-			String hostip = message.substring(idx + 1);
-		
-			dto.setOname(oname + "(" + hostip + ")");
-			dto.setMessage(messageFix);
+//		String message = dto.getMessage();
+//		String oname = dto.getOname();
+//		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
+//		
+//		if (idx > 0) {
+//			String messageFix = message.substring(0, idx);
+//			String hostip = message.substring(idx + 1);
+//		
+//			dto.setOname(oname + "(" + hostip + ")");
+//			dto.setMessage(messageFix);
+//		}
+				
+		if (dto.getLevel().equals("Warning")) {
+			dto.setLevel(config.getString("webhook.message.warnreplace", "Major"));
 		}
 		
 		FilePrinter printer = new FilePrinter();

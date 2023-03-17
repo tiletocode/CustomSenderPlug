@@ -10,16 +10,18 @@ public class FilePrinter {
 
 		Config config = Config.getConfig();
 
-		String outFormat = config.getString("webhook.message.format","#level | #oname | #message | #time");
+		String outFormat = config.getString("webhook.message.format","#level | #oname | #message | #time ");
 
 		outFormat = StringUtils.replace(outFormat, "#level", dto.getLevel());
 		outFormat = StringUtils.replace(outFormat, "#oname", dto.getOname());
 		outFormat = StringUtils.replace(outFormat, "#message", dto.getMessage());
 		outFormat = StringUtils.replace(outFormat, "#time", StringUtils.formatDate(dto.getTime(),
 		Config.getConfig().getString("webhook.message.date.format", "yyyyMMddHHmmss")));
-
-		String filePath = config.getString("webhook.file.path" + "webhook.file.extension", "out/outputFile.log");
-		PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(filePath), true));
+		String dir = config.getString("webhook.file.path", "out/outputFile");
+		String extension = config.getString("webhook.file.extension", ".log");
+		String fullPath = dir + extension;
+		
+		PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(fullPath), true));
 		printWriter.println(outFormat);
 		printWriter.close();
 		
@@ -30,11 +32,13 @@ public class FilePrinter {
 		Config config = Config.getConfig();
 
 		long currentTimestamp = System.currentTimeMillis();
+		String dot = ".";
 		String suffix = StringUtils.formatDate(currentTimestamp, config.getString("webhook.file.rolling.suffix", "yyyyMMdd"));
-		String filePath = config.getString("webhook.file.path" + "." + suffix + "webhook.file.extension",
-										   "out/outputFile" + "." + suffix + ".log");
+		String dir = config.getString("webhook.file.path", "out/outputFile");
+		String extension = config.getString("webhook.file.extension", ".log");
+		String fullPath = dir + dot + suffix + extension;
 		
-		PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(filePath), true));
+		PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(fullPath), true));
 		printWriter.println(str);
 		printWriter.close();
 	}

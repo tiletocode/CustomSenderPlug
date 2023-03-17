@@ -1,8 +1,11 @@
 package com.hdr.customsenderplug;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WebhookDto {
     private String metricName;
     private int pcode;
