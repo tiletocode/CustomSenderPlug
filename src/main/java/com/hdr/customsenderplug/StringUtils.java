@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
-import ch.qos.logback.classic.Level;
 
 public class StringUtils {
 
@@ -17,7 +16,6 @@ public class StringUtils {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         Date lDate = formatter.parse(date);
         return lDate.getTime();
-
     }
 
     public static String replace(String str, String regex, Object replacement) {
