@@ -57,20 +57,32 @@ public class Receiver extends HttpServlet{
 		if (dto.getMessage() == null) {
 			dto.setMessage(nullReplace);
 		}
-			
+		if (dto.getMessage().equals("")) {
+			dto.setMessage(dto.getTitle());
+		}
+
+		//Windows Log 말머리 삭제
+		if (dto.getTitle().startsWith("LOG")) {
+			String messageFix = dto.getTitle().substring(4);
+			dto.setMessage(messageFix);
+		}
+
 		//oname에 host_ip추가
-//		String message = dto.getMessage();
-//		String oname = dto.getOname();
-//		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
-//		
-//		if (idx > 0) {
-//			String messageFix = message.substring(0, idx);
-//			String hostip = message.substring(idx + 1);
-//		
-//			dto.setOname(oname + "(" + hostip + ")");
-//			dto.setMessage(messageFix);
-//		}
+		/**
+		String message = dto.getMessage();
+		String oname = dto.getOname();
+		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
+		
+		if (idx > 0) {
+			String messageFix = message.substring(0, idx);
+			String hostip = message.substring(idx + 1);
+		
+			dto.setOname(oname + "(" + hostip + ")");
+			dto.setMessage(messageFix);
+		}
+		*/
 				
+		//Warning -> Major
 		if (dto.getLevel().equals("Warning")) {
 			dto.setLevel(config.getString("webhook.message.warnreplace", "Major"));
 		}

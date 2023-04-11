@@ -1,7 +1,6 @@
 HELP.md
 target/
 out/
-config/
 logs/
 
 !.mvn/wrapper/maven-wrapper.jar
