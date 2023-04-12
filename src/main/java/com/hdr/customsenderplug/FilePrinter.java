@@ -3,6 +3,7 @@ package com.hdr.customsenderplug;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 public class FilePrinter {
@@ -21,7 +22,8 @@ public class FilePrinter {
 		String extension = config.getString("webhook.file.extension", ".log");
 		String fullPath = dir + extension;
 		
-		PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(fullPath), true));
+		//PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(fullPath), true));
+		PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(fullPath), true), "UTF-8"));
 		printWriter.println(outFormat);
 		printWriter.close();
 		
