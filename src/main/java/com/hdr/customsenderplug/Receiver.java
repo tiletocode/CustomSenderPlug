@@ -57,14 +57,12 @@ public class Receiver extends HttpServlet{
 		if (dto.getMessage() == null) {
 			dto.setMessage(nullReplace);
 		}
+		// 메시지가 빈 로그는 Title -> Message
 		if (dto.getMessage().equals("")) {
 			dto.setMessage(dto.getTitle());
-		}
-
-		//Windows Log 말머리 삭제
-		if (dto.getTitle().startsWith("LOG")) {
-			String messageFix = dto.getTitle().substring(4);
-			dto.setMessage(messageFix);
+			if (dto.getTitle().startsWith("LOG")) {
+				dto.setMessage(dto.getMessage().replace("LOG", "LOG:"));
+			}
 		}
 
 		//oname에 host_ip추가

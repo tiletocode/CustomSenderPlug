@@ -24,3 +24,5 @@ Warning | 158.247.198.153 | Memory Used: 68.275% (Threshold: 50%) | 202303052312
 Warning | 158.247.198.153 | Thread Count of MetricTest: 49 (Threshold: 40) | 20230305231400
 Warning | DBX-198-153-3306 | InnoDB Row Lock Current Waits: 0 (Threshold: 1) | 20230305231435
 Warning | DBX-198-153-3306 | InnoDB Row Lock Time: 0 (Threshold: 1) | 20230305231445
+Info | sample-name | This is a test of Whatap alert message | 2023-04-13 11:34:22 
+Major | Windows Server 2019 Std | LOG: Hang Test_Final | 2023-04-13 11:36:38 
