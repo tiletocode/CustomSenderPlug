@@ -1,28 +1,30 @@
-Info | sample-name | This is a test of Whatap alert message | 20230305181804
-Critical | hadaruns-test | hadaruns-test서버의 메모리 사용량이 68.0351%입니다. (30%이상) | 20230305182250
-Info | sample-name | This is a test of Whatap alert message | 20230305182623
-Critical | hadaruns-test | hadaruns-test서버의 메모리 사용량이 67.928%입니다. (30%이상) | 20230305182755
-Critical | hadaruns-test | hadaruns-test서버의 메모리 사용률이 68.0005%입니다. (30%이상 경고) | 20230305182910
-Critical | hadaruns-test | 서버의 메모리 사용률이 67.9749%입니다. (30%이상 경고) | 20230305183050
-Warning | MetricTest | 실행중인 Thread 수: 49(임계치:40이상) | 20230305183115
-Warning | hadaruns-test | 서버의 메모리 사용률이 68.0458%입니다. (30%이상 Warning) | 20230305183140
-Warning | hadaruns-test | 서버의 메모리 사용률이 68.0327%입니다. (35%이상 Warning) | 20230305183155
-Warning | hadaruns-test | 서버의 메모리 사용률이 68.0487%입니다. (50%이상 Warning) | 20230305183225
-Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상) | 20230305183410
-Warning | hadaruns-test | 서버의 메모리 사용률이 67.9935%입니다. (Warning:50%이상) | 20230305183525
-Warning | hadaruns-test | 서버의 메모리 사용률: 68.0101%(Warning:50%이상) | 20230305183820
-Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상) | 20230305183915
-Warning | MetricTest | 실행중인 Thread 수: 49(Warning:40이상)@158.247.198.153 | 20230305184145
-Warning | hadaruns-test | 서버의 메모리 사용률: 68.0508%(Warning:50%이상) | 20230305184325
-Warning | MetricTest | 실행중인 Thread 수: 49 (Warning:40이상)@158.247.198.153 | 20230305184355
-Warning | hadaruns-test | 서버의 메모리 사용률: 68.0324% (Warning:50%이상) | 20230305184410
-Info | sample-name | This is a test of Whatap alert message | 20230305231017
-Info | sample-name | This is a test of Whatap alert message | 20230305231040
-Info | sample-name | This is a test of Whatap alert message | 20230305231059
-Warning | 158.247.198.153 | Thread Count: 49 (Threshold: 40) | 20230305231225
-Warning | 158.247.198.153 | Memory Used: 68.275% (Threshold: 50%) | 20230305231250
-Warning | 158.247.198.153 | Thread Count of MetricTest: 49 (Threshold: 40) | 20230305231400
-Warning | DBX-198-153-3306 | InnoDB Row Lock Current Waits: 0 (Threshold: 1) | 20230305231435
-Warning | DBX-198-153-3306 | InnoDB Row Lock Time: 0 (Threshold: 1) | 20230305231445
-Info | sample-name | This is a test of Whatap alert message | 2023-04-13 11:34:22 
-Major | Windows Server 2019 Std | LOG: Hang Test_Final | 2023-04-13 11:36:38 
+Info | sample-name | This is a test of Whatap alert message | 2024-03-14 10:44:34 
+Major | whatap-multi | Disk / Used > 1.0 % | 2024-03-14 10:46:30 
+Info | sample-name | This is a test of Whatap alert message | 2024-06-29 14:17:05 
+Major | whatap-multi | 아이원잡) memory used > 40% (현재: 63.8345%) | 2024-06-29 14:34:42 
+Major | hadaruns-test | 아이원잡) memory used > 40% (현재: 52.8329%) | 2024-06-29 14:34:42 
+Major | K8s | 아이원잡) memory used > 40% (현재: 49.3191%) | 2024-06-29 14:34:43 
+Info | sample-name | This is a test of Whatap alert message | 2024-06-29 14:35:40 
+Major | empty_value | node: wn3 - container의 memory 사용률이  15% 이상입니다. (현재: 19.3%) | 2024-06-29 14:43:35 
+Major | empty_value | node: cp - container의 memory 사용률이  15% 이상입니다. (현재: 30.0%) | 2024-06-29 14:43:35 
+Major | empty_value | node: wn1 - container의 memory 사용률이  15% 이상입니다. (현재: 16.5%) | 2024-06-29 14:43:35 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.3%) | 2024-06-29 14:45:21 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.2%) | 2024-06-29 14:45:21 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.7%) | 2024-06-29 14:45:21 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.2%) | 20240629144623 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.3%) | 20240629144623 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.5%) | 20240629144623 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.2%) | 20240629144819 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.3%) | 20240629144819 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.5%) | 20240629144819 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.4%) KMaster | 20240629144903 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.4%) KMaster | 20240629144903 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.5%) KMaster | 20240629144903 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.5%) | 20240629145053 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.5%) | 20240629145053 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.3%) | 20240629145053 
+Major | empty_value | 아이원잡)wn3 - container의 memory 사용률이 15% 이상입니다. (현재: 19.3%) | 20240629151555 
+Major | empty_value | 아이원잡)cp - container의 memory 사용률이 15% 이상입니다. (현재: 29.1%) | 20240629151555 
+Major | empty_value | 아이원잡)wn1 - container의 memory 사용률이 15% 이상입니다. (현재: 16.8%) | 20240629151555 
+Major | cp | cp - cp: memory used > 30% (current: 34.2637%) | 20240629151620 
+Major | cp | cp - cp: memory used > 30% (current: 34.3078%) | 20240629151915 

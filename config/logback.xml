@@ -10,7 +10,7 @@
         <file>logs/webhook.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>logs/webhook-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>5</maxHistory>
+            <maxHistory>60</maxHistory>
         </rollingPolicy>
 
         <encoder>
