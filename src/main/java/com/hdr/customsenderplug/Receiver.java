@@ -16,23 +16,23 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class Receiver extends HttpServlet{
+public class Receiver extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		log.warn("There is no service for GET method : [ " + request.getRemoteAddr() + " / " + request.getRequestURI()
-				+ " ]");
-		throw new ServletException("There is no service for GET method");
-
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
+		// 응답 상태를 200(OK)으로 설정
+		response.setStatus(HttpServletResponse.SC_OK);
+		response.getWriter().write("Webhook Service Running.");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Config config = Config.getConfig();
-		
+
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		try {
@@ -45,8 +45,8 @@ public class Receiver extends HttpServlet{
 		String requestBody = jb.toString();
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
-		
-		//null check
+
+		// null check
 		String nullReplace = config.getString("webhook.message.nullreplace", "empty_value");
 		if (dto.getLevel() == null) {
 			dto.setLevel(nullReplace);
@@ -65,26 +65,37 @@ public class Receiver extends HttpServlet{
 			}
 		}
 
-		//oname에 host_ip추가
-		/**
+		// seperator 뒤에 문자열 검출 시 hostname컬럼 치환
 		String message = dto.getMessage();
-		String oname = dto.getOname();
 		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
-		
-		if (idx > 0) {
-			String messageFix = message.substring(0, idx);
-			String hostip = message.substring(idx + 1);
-		
-			dto.setOname(oname + "(" + hostip + ")");
-			dto.setMessage(messageFix);
+		if ( idx > 0 ) {
+			String msgWithoutLabel = message.substring(0, idx);
+			String label = message.substring(idx + 1);
+
+			dto.setOname(label);
+			dto.setMessage(msgWithoutLabel);
 		}
-		*/
-				
-		//Warning -> Major
+		// oname에 host_ip추가
+		/**
+		 * String message = dto.getMessage();
+		 * String oname = dto.getOname();
+		 * int idx = message.indexOf(config.getString("webhook.message.seperator",
+		 * "@"));
+		 * 
+		 * if (idx > 0) {
+		 * String messageFix = message.substring(0, idx);
+		 * String hostip = message.substring(idx + 1);
+		 * 
+		 * dto.setOname(oname + "(" + hostip + ")");
+		 * dto.setMessage(messageFix);
+		 * }
+		 */
+
+		// Warning -> Major
 		if (dto.getLevel().equals("Warning")) {
 			dto.setLevel(config.getString("webhook.message.warnreplace", "Major"));
 		}
-		
+
 		FilePrinter printer = new FilePrinter();
 		printer.print(dto);
 	}

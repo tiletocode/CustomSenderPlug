@@ -14,11 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class Scheduler {
     
-	@Scheduled(cron = "0 0 0 * * ?")	
+	@Scheduled(cron = "0 0 0 * * ?")
 	public void cronJob() {
 		Config config = Config.getConfig();
 		try {
-			log.info("[File Rolling CronJob] is running");
+            log.info("[File Rolling CronJob] is running");
 			
 			String dir = config.getString("webhook.file.path", "out/outputFile");
 			String extension = config.getString("webhook.file.extension", ".log");
@@ -31,7 +31,7 @@ public class Scheduler {
 			
 			long currentTimestamp = System.currentTimeMillis();
 			long oneDay = 1000L * 60 * 60 * 24;
-			int targetSize = config.getInt("webhook.file.rolling.size", 10);
+			int targetSize = config.getInt("webhook.file.rolling.size", 30);
 			if(targetSize < 2) {
 				log.warn("webhook.file.rolling.size set to default value : 2");
 				targetSize = 2;
@@ -48,9 +48,8 @@ public class Scheduler {
 			}
 			
 			log.info("[File Rolling CronJob] finished");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
 	}
-	
 }
