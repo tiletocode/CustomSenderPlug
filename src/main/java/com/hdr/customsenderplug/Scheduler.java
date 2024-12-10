@@ -24,7 +24,7 @@ public class Scheduler {
 			String dirInfra = config.getString("webhook.file.infra.path", "out/outputFile_infra");
 			String dirApm = config.getString("webhook.file.apm.path", "out/outputFile_apm");
 			String dirDb = config.getString("webhook.file.db.path", "out/outputFile_db");
-			String dirK8s = config.getString("webhook.file.infra.path", "out/outputFile_k8s");
+			String dirK8s = config.getString("webhook.file.k8s.path", "out/outputFile_k8s");
 			String extension = config.getString("webhook.file.extension", ".log");
 
 			processFileRolling(dirInfra, extension, config);
