@@ -36,7 +36,6 @@ public class Config {
 	public int getInt(String key, int defaultValue) {
 		return Integer.parseInt(props.getProperty(key, Integer.toString(defaultValue)));
 	}
-
 	
 	@Override
 	public String toString() {

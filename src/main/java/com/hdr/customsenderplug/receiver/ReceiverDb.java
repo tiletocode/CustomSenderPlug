@@ -1,4 +1,4 @@
-package com.hdr.customsenderplug;
+package com.hdr.customsenderplug.receiver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hdr.customsenderplug.Config;
+import com.hdr.customsenderplug.FilePrinter;
+import com.hdr.customsenderplug.WebhookDto;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class Receiver extends HttpServlet {
+public class ReceiverDb extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +28,7 @@ public class Receiver extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		// 응답 상태를 200(OK)으로 설정
 		response.setStatus(HttpServletResponse.SC_OK);
-		response.getWriter().write("Webhook Service Running.");
+		response.getWriter().write("Webhook Service(DB) Running.");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,38 +68,28 @@ public class Receiver extends HttpServlet {
 			}
 		}
 
-		// seperator 뒤에 문자열 검출 시 hostname컬럼 치환
 		String message = dto.getMessage();
 		int idx = message.indexOf(config.getString("webhook.message.seperator", "@"));
 		if ( idx > 0 ) {
+			// seperator 뒤에 문자열 검출 시 hostname컬럼 치환
 			String msgWithoutLabel = message.substring(0, idx);
 			String label = message.substring(idx + 1);
 
 			dto.setOname(label);
 			dto.setMessage(msgWithoutLabel);
+			//제품 별 메시지그룹 설정
+			dto.setMsgGroup(config.getString("webhook.group.db", "WHATAP_DB"));
 		}
-		// oname에 host_ip추가
-		/**
-		 * String message = dto.getMessage();
-		 * String oname = dto.getOname();
-		 * int idx = message.indexOf(config.getString("webhook.message.seperator",
-		 * "@"));
-		 * 
-		 * if (idx > 0) {
-		 * String messageFix = message.substring(0, idx);
-		 * String hostip = message.substring(idx + 1);
-		 * 
-		 * dto.setOname(oname + "(" + hostip + ")");
-		 * dto.setMessage(messageFix);
-		 * }
-		 */
 
 		// Warning -> Major
 		if (dto.getLevel().equals("Warning")) {
 			dto.setLevel(config.getString("webhook.message.warnreplace", "Major"));
 		}
 
+		//제품 별 메시지그룹 설정
+		dto.setMsgGroup(config.getString("webhook.group.db", "WHATAP_DB"));
+
 		FilePrinter printer = new FilePrinter();
-		printer.print(dto);
+		printer.printDb(dto);
 	}
 }

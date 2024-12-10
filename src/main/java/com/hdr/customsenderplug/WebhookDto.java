@@ -20,4 +20,5 @@ public class WebhookDto {
     private String projectName;
     private String status;
     private long time;
+    private String msgGroup;
 }
