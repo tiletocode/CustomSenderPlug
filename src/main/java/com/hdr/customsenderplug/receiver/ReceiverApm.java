@@ -77,8 +77,6 @@ public class ReceiverApm extends HttpServlet {
 
 			dto.setOname(label);
 			dto.setMessage(msgWithoutLabel);
-			//제품 별 메시지그룹 설정
-			dto.setMsgGroup(config.getString("webhook.group.apm", "WHATAP_APM"));
 		}
 
 		// Warning -> Major

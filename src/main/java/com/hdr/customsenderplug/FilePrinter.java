@@ -30,6 +30,17 @@ public class FilePrinter {
         writeToFile(outFormat, fullPath, "UTF-8");
         writeToRollingFile(outFormat, dir, extension, config);
     }
+    public void printApmPod(WebhookDto dto) throws IOException {
+        Config config = Config.getConfig();
+
+        String outFormat = formatOutput(dto, config);
+        String dir = config.getString("webhook.file.apmpod.path", "out/outputFile_apm");
+        String extension = config.getString("webhook.file.extension", ".log");
+        String fullPath = dir + extension;
+
+        writeToFile(outFormat, fullPath, "UTF-8");
+        writeToRollingFile(outFormat, dir, extension, config);
+    }
     public void printDb(WebhookDto dto) throws IOException {
         Config config = Config.getConfig();
 

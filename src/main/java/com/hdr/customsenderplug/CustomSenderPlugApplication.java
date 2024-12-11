@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.hdr.customsenderplug.receiver.ReceiverApm;
+import com.hdr.customsenderplug.receiver.ReceiverApmPod;
 import com.hdr.customsenderplug.receiver.ReceiverDb;
 import com.hdr.customsenderplug.receiver.ReceiverInfra;
 import com.hdr.customsenderplug.receiver.ReceiverK8s;
@@ -58,6 +59,17 @@ public class CustomSenderPlugApplication {
         beanFactory.autowireBean(servlet);
         srb.setServlet(servlet);
         srb.setUrlMappings(Arrays.asList(config.getString("webhook.server.apm.uri", "/webhook_apm")));
+        return srb;
+    }
+    @Bean
+    public ServletRegistrationBean<ReceiverApmPod> ReceiverApmPodServletRegistrationBean() {
+		log.info("Config file \n" + config.toString());
+
+        ServletRegistrationBean<ReceiverApmPod> srb = new ServletRegistrationBean<>();
+        final ReceiverApmPod servlet = new ReceiverApmPod();
+        beanFactory.autowireBean(servlet);
+        srb.setServlet(servlet);
+        srb.setUrlMappings(Arrays.asList(config.getString("webhook.server.apmpod.uri", "/webhook_apmpod")));
         return srb;
     }
 	@Bean
