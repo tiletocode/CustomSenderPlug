@@ -79,7 +79,7 @@ public class ReceiverApmPod extends HttpServlet {
 
 			dto.setOname(labelTrim);
 			dto.setMessage(msgWithoutLabel);
-		} else if ( idx == -1 ) {
+		} else {
 			// message에 seperator가 없는 pod내부 APM 메트릭 이벤트용
 			String label = dto.getOname();
 			String labelTrim = label.split("-")[0];

@@ -79,6 +79,12 @@ public class ReceiverK8s extends HttpServlet {
 
 			dto.setOname(labelTrim);
 			dto.setMessage(msgWithoutLabel);
+		} else {
+			// message에 seperator가 없는 pod내부 APM 메트릭 이벤트용
+			String label = dto.getOname();
+			String labelTrim = label.split("-")[0];
+
+			dto.setOname(labelTrim);
 		}
 		// Warning -> Major
 		if (dto.getLevel().equals("Warning")) {
