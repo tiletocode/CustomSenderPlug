@@ -46,6 +46,8 @@ public class ReceiverApm extends HttpServlet {
 			log.error(e.getMessage(), e);
 		}
 		String requestBody = jb.toString();
+		log.info("Received webhook request (APM): {}", requestBody);
+		
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 
@@ -87,7 +89,11 @@ public class ReceiverApm extends HttpServlet {
 		//제품 별 메시지그룹 설정
 		dto.setMsgGroup(config.getString("webhook.group.apm", "WHATAP_APM"));
 
-		FilePrinter printer = new FilePrinter();
-		printer.printApm(dto);
+		try {
+			FilePrinter printer = new FilePrinter();
+			printer.printApm(dto);
+		} catch (IOException e) {
+			log.error("File writing failed in ReceiverApm: {}", e.getMessage(), e);
+		}
 	}
 }

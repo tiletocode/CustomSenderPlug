@@ -1,0 +1,10 @@
+1.1.2 webhook으로 json데이터 받을때 전체 body를 log에 출력
+1.1.1 K8S, container APM의 oname은 하이픈 뒷부분을 버리는 로직 추가
+1.1.0 제품별 endpoint 분리
+
+1.0.5 이벤트메시지의 @ 뒤에 문자열을 hostname으로 치환하는 로직 추가
+1.0.4 로그 파일 이벤트알림은 메세지 앞에 LOG: 추가
+1.0.3 outputLog 문자인코딩 고정(UTF-8)
+1.0.2 Warning -> Major로 변환
+1.0.1 nullcheck 로직 추가
+1.0.0 initial commit

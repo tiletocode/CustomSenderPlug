@@ -46,6 +46,8 @@ public class ReceiverDb extends HttpServlet {
 			log.error(e.getMessage(), e);
 		}
 		String requestBody = jb.toString();
+		log.info("Received webhook request (DB): {}", requestBody);
+		
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 
@@ -87,7 +89,11 @@ public class ReceiverDb extends HttpServlet {
 		//제품 별 메시지그룹 설정
 		dto.setMsgGroup(config.getString("webhook.group.db", "WHATAP_DB"));
 
-		FilePrinter printer = new FilePrinter();
-		printer.printDb(dto);
+		try {
+			FilePrinter printer = new FilePrinter();
+			printer.printDb(dto);
+		} catch (IOException e) {
+			log.error("File writing failed in ReceiverDb: {}", e.getMessage(), e);
+		}
 	}
 }

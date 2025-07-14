@@ -46,6 +46,8 @@ public class ReceiverK8s extends HttpServlet {
 			log.error(e.getMessage(), e);
 		}
 		String requestBody = jb.toString();
+		log.info("Received webhook request (K8S): {}", requestBody);
+		
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 
@@ -94,7 +96,11 @@ public class ReceiverK8s extends HttpServlet {
 		//제품 별 메시지그룹 설정
 		dto.setMsgGroup(config.getString("webhook.group.k8s", "WHATAP_K8S"));
 
-		FilePrinter printer = new FilePrinter();
-		printer.printK8s(dto);
+		try {
+			FilePrinter printer = new FilePrinter();
+			printer.printK8s(dto);
+		} catch (IOException e) {
+			log.error("File writing failed in ReceiverK8s: {}", e.getMessage(), e);
+		}
 	}
 }

@@ -46,6 +46,8 @@ public class ReceiverInfra extends HttpServlet {
 			log.error(e.getMessage(), e);
 		}
 		String requestBody = jb.toString();
+		log.info("Received webhook request (INFRA): {}", requestBody);
+		
 		ObjectMapper om = new ObjectMapper();
 		WebhookDto dto = om.readValue(requestBody, WebhookDto.class);
 
@@ -87,7 +89,12 @@ public class ReceiverInfra extends HttpServlet {
 		//제품 별 메시지그룹 설정
 		dto.setMsgGroup(config.getString("webhook.group.infra", "WHATAP_INFRA"));
 		
-		FilePrinter printer = new FilePrinter();
-		printer.printInfra(dto);
+		try {
+			FilePrinter printer = new FilePrinter();
+			printer.printInfra(dto);
+		} catch (IOException e) {
+			log.error("File writing failed in ReceiverInfra: {}", e.getMessage(), e);
+			// HTTP 응답은 정상적으로 처리 (파일 쓰기 실패가 webhook 응답에 영향주지 않도록)
+		}
 	}
 }
